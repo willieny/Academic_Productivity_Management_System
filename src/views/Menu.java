@@ -8,12 +8,13 @@ public class Menu {
 				+ "[1] Cadastrar colaborador\n"
 				+ "[2] Cadastrar projeto\n"
 				+ "[3] Cadastrar produção acadêmica\n"
-				+ "[4] Alocação de participantes ao projeto\n"
-				+ "[5] Consultar/Alterar status do projeto\n"
-				+ "[6] Consultar colaborador\n"
-				+ "[7] Consultar projeto\n"
-				+ "[8] Relatório de produção acadêmica\n"
-				+ "[9] Sair\n"
+				+ "[4] Alocação de participantes\n"
+				+ "[5] Alterar status do projeto\n"
+				+ "[6] Associar produção acadêmica a um projeto\n"
+				+ "[7] Consultar colaborador\n"
+				+ "[8] Consultar projeto\n"
+				+ "[9] Relatório de produção acadêmica\n"
+				+ "[0] Sair\n"
 				+ "==> ");
 	}
 	

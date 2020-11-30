@@ -114,7 +114,7 @@ public class Project {
 	public String toString() {
 		return "\nTítulo: " + title + "\nData de início: " + sdf.format(start) + "\nData de término: " + sdf.format(finish)
 				+ "\nAgência financiadora: " + fundingAgency + "\nValor financiado: " + String.format("%.2f", amount) + "\nObjetivo: "
-				+ objective + "\nDescrição: " + description + "\n";
+				+ objective + "\nDescrição: " + description + "\nParticipantes: " + collaborators + "\n";
 	}
 	
 }

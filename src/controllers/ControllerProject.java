@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
 
+import model.entities.Collaborator;
 import model.entities.Project;
 import model.enums.StatusProject;
 
@@ -39,5 +40,77 @@ public class ControllerProject {
 		
 		System.out.println("\nStatus do projeto: " + project.getStatus().getStatusProject()+ "\n");
 	}
+	public void allocationOfParticipants(ControllerCollaborator controllerCollaborator) {
+		System.out.print("Título do projeto: ");
+		String title = sc.nextLine();
+		Project project = findProject(title);
+		System.out.print("Nome do colaborador a ser alocado: ");
+		String name = sc.nextLine();
+		Collaborator collaborator = controllerCollaborator.findCollaborator(name);
+		
+		if(project.getCollaborators().isEmpty()) {
+			if(controllerCollaborator.isTeacher(collaborator)) {
+				project.addCollaborator(collaborator);
+			}
+			else {
+				System.out.println("O projeto não possui professores alocados. Adicione pelo menos um.");
+			}
+		}
+		else {
+			project.addCollaborator(collaborator);
+		}
+
+	}
 	
+	public void statusChange() {
+		
+		StatusProject status = null;
+		
+		System.out.print("Título do projeto: ");
+		String title = sc.nextLine();
+		Project project = findProject(title);
+		System.out.println("\nStatus atual: " + project.getStatus().getStatusProject());
+		
+		System.out.print("Alterar status(s/n)? ");
+		char c = sc.next().charAt(0);
+		sc.nextLine();
+		
+		if(c == 's') {
+			if(checkInformation(project)) {
+				System.out.println("Informações básicas incompletas.");
+			}
+			else {
+				if(project.getStatus() == status.IN_PREPARATION) {
+					project.setStatus(status.IN_PROCESS);
+				}
+				else if(project.getStatus() == status.IN_PROCESS) {
+					project.setStatus(status.CONCLUDED);
+				}
+				System.out.println("\nNovo status: " + project.getStatus().getStatusProject());
+			}
+		}
+		System.out.println(project);
+	}
+	
+	public Project findProject(String title) {
+		for(Project p : projects) {
+	       if(p.getTitle().equals(title)) {
+	           return p;
+	       }
+		}
+		return null;
+	}
+	
+	public boolean checkInformation(Project project) {
+		if(project.getFundingAgency().equals("") || project.getObjective().equals("") || project.getDescription().equals("")) {
+			return true;
+		}
+		return false;
+	}
+	
+	public void print() {
+		for(Project p : projects) {
+			System.out.println(p);
+		}
+	}
 }

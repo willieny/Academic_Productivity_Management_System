@@ -62,6 +62,21 @@ public class ControllerCollaborator {
 		return null;
 	}
 	
+	public Collaborator findCollaborator(String name) {
+		for(Collaborator c : collaborators) {
+			if(c.getName().equals(name)) {
+               return c;
+			}
+		}
+		return null;
+	}
+	public boolean isTeacher(Collaborator collaborator) {
+		if(collaborator instanceof Teacher) {
+			return true;
+		}
+		return false;
+	}
+	
 	public void print() {
 		for(Collaborator c : collaborators) {
 			System.out.println(c);
