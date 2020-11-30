@@ -61,6 +61,7 @@ public class ControllerProject {
 			if(project.getCollaborators().isEmpty()) {
 				if(controllerCollaborator.isTeacher(collaborator)) {
 					project.addCollaborator(collaborator);
+					collaborator.addProject(project);
 				}
 				else {
 					System.out.println("O projeto não possui professores alocados. Adicione pelo menos um.");
@@ -97,7 +98,7 @@ public class ControllerProject {
 				if(project.getStatus() == status.IN_PREPARATION) {
 					project.setStatus(status.IN_PROCESS);
 				}
-				else if(project.getStatus() == status.IN_PROCESS) {
+				else if(project.getStatus() == status.IN_PROCESS && project.getPublications().size() > 0) {
 					project.setStatus(status.CONCLUDED);
 				}
 				System.out.println("\nNovo status: " + project.getStatus().getStatusProject());
