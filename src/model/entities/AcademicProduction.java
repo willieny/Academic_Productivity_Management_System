@@ -40,5 +40,7 @@ public abstract class AcademicProduction {
 	public void removeAuthor(Collaborator author) {
 		authors.remove(author);
 	}
-		
+	
+	@Override
+	public abstract String toString();
 }

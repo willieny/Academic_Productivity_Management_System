@@ -35,10 +35,10 @@ public class ManagementSystem {
 				    controllerProject.print();
 					break;
 				case 5:
-				    controllerProject.statusChange();
+					controllerAcademic.allocationOfParticipants(controllerCollaborator);
 					break;
 				case 6:
-				    // code block
+					controllerProject.statusChange();
 					break;
 				case 7:
 				    // code block
@@ -47,6 +47,9 @@ public class ManagementSystem {
 				    // code block
 					break;
 				case 9:
+					// code block
+					break;
+				case 10:
 					// code block
 					break;
 				case 0:

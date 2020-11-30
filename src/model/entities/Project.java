@@ -19,6 +19,7 @@ public class Project {
 	private StatusProject status;
 	
 	private ArrayList<Collaborator> collaborators = new ArrayList<Collaborator>();
+	private ArrayList<Publication> publications = new ArrayList<Publication>();
 	
 	SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
@@ -109,12 +110,24 @@ public class Project {
 	public void removeCollaborator(Collaborator collaborator) {
 		collaborators.remove(collaborator);
 	}
+
+	public ArrayList<Publication> getPublications() {
+		return publications;
+	}
+
+	public void addPublication(Publication publication) {
+		publications.add(publication);
+	}
+	
+	public void removePublication(Publication publication) {
+		publications.remove(publication);
+	}
 	
 	@Override
 	public String toString() {
 		return "\nTítulo: " + title + "\nData de início: " + sdf.format(start) + "\nData de término: " + sdf.format(finish)
 				+ "\nAgência financiadora: " + fundingAgency + "\nValor financiado: " + String.format("%.2f", amount) + "\nObjetivo: "
-				+ objective + "\nDescrição: " + description + "\nParticipantes: " + collaborators + "\n";
+				+ objective + "\nDescrição: " + description + "\nParticipantes: " + collaborators + "\nPublicações: " + publications + "\n";
 	}
 	
 }

@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.Scanner;
 
 import model.entities.AcademicProduction;
+import model.entities.Collaborator;
 import model.entities.Orientation;
 import model.entities.Publication;
 import model.entities.Teacher;
@@ -47,6 +48,27 @@ public class ControllerAcademicProduction {
 		}
 		academicProductions.add(academicProduction);
 		System.out.println(academicProduction);
+	}
+	
+	public void allocationOfParticipants(ControllerCollaborator controllerCollaborator) {		
+		System.out.print("Título da produção acadêmica: ");
+		String title = sc.nextLine();
+		AcademicProduction academicProduction = findAcademicProduction(title);
+		System.out.print("Nome do colaborador a ser alocado: ");
+		String name = sc.nextLine();
+		Collaborator collaborator = controllerCollaborator.findCollaborator(name);
+		academicProduction.addAuthor(collaborator);
+		collaborator.addAcademicProduction(academicProduction);
+		System.out.println(academicProduction);
+	}
+	
+	public AcademicProduction findAcademicProduction(String title) {
+		for(AcademicProduction ap : academicProductions) {
+	       if(ap.getTitle().equals(title)) {
+	           return ap;
+	       }
+		}
+		return null;
 	}
 	
 }

@@ -8,6 +8,7 @@ import java.util.Scanner;
 
 import model.entities.Collaborator;
 import model.entities.Project;
+import model.entities.Publication;
 import model.enums.StatusProject;
 
 public class ControllerProject {
@@ -21,45 +22,58 @@ public class ControllerProject {
 	public void register() throws ParseException {
 		System.out.print("Título: ");
 		String title = sc.nextLine();
-		System.out.print("Data de início (dd/MM/yyyy): ");
-		Date start = sdf.parse(sc.nextLine());
-		System.out.print("Data de término (dd/MM/yyyy): ");
-		Date finish = sdf.parse(sc.nextLine());
-		System.out.print("Agência financiadora: ");
-		String agency = sc.nextLine();
-		System.out.print("Valor financiado: ");
-		double amount = sc.nextDouble();
-		sc.nextLine();
-		System.out.print("Objetivo: ");
-		String objective = sc.nextLine();
-		System.out.print("Descrição: ");
-		String description = sc.nextLine();
-		
-		Project project = new Project(title, start, finish, agency, amount, objective, description, StatusProject.IN_PREPARATION);
-		projects.add(project);
-		
-		System.out.println("\nStatus do projeto: " + project.getStatus().getStatusProject()+ "\n");
+		if(checkTitle(title)) {
+			System.out.println("Título já existente.");
+		}else {
+			System.out.print("Data de início (dd/MM/yyyy): ");
+			Date start = sdf.parse(sc.nextLine());
+			System.out.print("Data de término (dd/MM/yyyy): ");
+			Date finish = sdf.parse(sc.nextLine());
+			System.out.print("Agência financiadora: ");
+			String agency = sc.nextLine();
+			System.out.print("Valor financiado: ");
+			double amount = sc.nextDouble();
+			sc.nextLine();
+			System.out.print("Objetivo: ");
+			String objective = sc.nextLine();
+			System.out.print("Descrição: ");
+			String description = sc.nextLine();
+			
+			Project project = new Project(title, start, finish, agency, amount, objective, description, StatusProject.IN_PREPARATION);
+			projects.add(project);
+			
+			System.out.println("\nStatus do projeto: " + project.getStatus().getStatusProject()+ "\n");
+		}
 	}
+	
 	public void allocationOfParticipants(ControllerCollaborator controllerCollaborator) {
+		StatusProject status = null;
+		
 		System.out.print("Título do projeto: ");
 		String title = sc.nextLine();
 		Project project = findProject(title);
-		System.out.print("Nome do colaborador a ser alocado: ");
-		String name = sc.nextLine();
-		Collaborator collaborator = controllerCollaborator.findCollaborator(name);
 		
-		if(project.getCollaborators().isEmpty()) {
-			if(controllerCollaborator.isTeacher(collaborator)) {
-				project.addCollaborator(collaborator);
+		if(project.getStatus() == status.IN_PROCESS) {
+			System.out.print("Nome do colaborador a ser alocado: ");
+			String name = sc.nextLine();
+			Collaborator collaborator = controllerCollaborator.findCollaborator(name);
+			
+			if(project.getCollaborators().isEmpty()) {
+				if(controllerCollaborator.isTeacher(collaborator)) {
+					project.addCollaborator(collaborator);
+				}
+				else {
+					System.out.println("O projeto não possui professores alocados. Adicione pelo menos um.");
+				}
 			}
 			else {
-				System.out.println("O projeto não possui professores alocados. Adicione pelo menos um.");
+				project.addCollaborator(collaborator);
+				collaborator.addProject(project);
 			}
 		}
 		else {
-			project.addCollaborator(collaborator);
+			System.out.println("Altere o status do projeto para \"Em andamento\"");
 		}
-
 	}
 	
 	public void statusChange() {
@@ -92,6 +106,16 @@ public class ControllerProject {
 		System.out.println(project);
 	}
 	
+	public void associatePublication(ControllerAcademicProduction controllerAcademicProduction) {
+		System.out.print("Título do projeto: ");
+		String title = sc.nextLine();
+		Project project = findProject(title);
+		System.out.println("Título da publicação: ");
+		String titlePublication = sc.nextLine();
+		Publication publication = (Publication)controllerAcademicProduction.findAcademicProduction(titlePublication);
+		project.addPublication(publication);	
+	}
+	
 	public Project findProject(String title) {
 		for(Project p : projects) {
 	       if(p.getTitle().equals(title)) {
@@ -104,6 +128,15 @@ public class ControllerProject {
 	public boolean checkInformation(Project project) {
 		if(project.getFundingAgency().equals("") || project.getObjective().equals("") || project.getDescription().equals("")) {
 			return true;
+		}
+		return false;
+	}
+	
+	public boolean checkTitle(String title) {
+		for(Project p : projects) {
+			if(p.getTitle().equals(title)) {
+				return true;
+		    }
 		}
 		return false;
 	}
