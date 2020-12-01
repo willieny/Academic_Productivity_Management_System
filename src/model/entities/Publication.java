@@ -3,7 +3,7 @@ package model.entities;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class Publication extends AcademicProduction{
+public class Publication extends AcademicProduction implements Comparable<Publication>{
 
 	private String conference;
 	private Date yearPublication;
@@ -35,6 +35,13 @@ public class Publication extends AcademicProduction{
 	@Override
 	public String toString() {
 		return "\nTítulo: " + getTitle() + "\nConferência: " + conference + "\nAno de publicação: " + sdf.format(yearPublication) + "\nAutores: " + getAuthors() +"\n";
+	}
+
+	@Override
+	public int compareTo(Publication o) {
+		if (getYearPublication() == null || o.getYearPublication() == null)
+		      return 0;
+		return getYearPublication().compareTo(o.getYearPublication());
 	}
 	
 }

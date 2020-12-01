@@ -47,13 +47,11 @@ public class ControllerProject {
 	}
 	
 	public void allocationOfParticipants(ControllerCollaborator controllerCollaborator) {
-		StatusProject status = null;
-		
 		System.out.print("Título do projeto: ");
 		String title = sc.nextLine();
 		Project project = findProject(title);
 		
-		if(project.getStatus() == status.IN_PROCESS) {
+		if(project.getStatus() == StatusProject.IN_PROCESS) {
 			System.out.print("Nome do colaborador a ser alocado: ");
 			String name = sc.nextLine();
 			Collaborator collaborator = controllerCollaborator.findCollaborator(name);
@@ -61,7 +59,7 @@ public class ControllerProject {
 			if(project.getCollaborators().isEmpty()) {
 				if(controllerCollaborator.isTeacher(collaborator)) {
 					project.addCollaborator(collaborator);
-					collaborator.addProject(project);
+					//collaborator.addProject(project);
 				}
 				else {
 					System.out.println("O projeto não possui professores alocados. Adicione pelo menos um.");
@@ -69,7 +67,7 @@ public class ControllerProject {
 			}
 			else {
 				project.addCollaborator(collaborator);
-				collaborator.addProject(project);
+				//collaborator.addProject(project);
 			}
 		}
 		else {
@@ -78,9 +76,6 @@ public class ControllerProject {
 	}
 	
 	public void statusChange() {
-		
-		StatusProject status = null;
-		
 		System.out.print("Título do projeto: ");
 		String title = sc.nextLine();
 		Project project = findProject(title);
@@ -95,11 +90,11 @@ public class ControllerProject {
 				System.out.println("Informações básicas incompletas.");
 			}
 			else {
-				if(project.getStatus() == status.IN_PREPARATION) {
-					project.setStatus(status.IN_PROCESS);
+				if(project.getStatus() == StatusProject.IN_PREPARATION) {
+					project.setStatus(StatusProject.IN_PROCESS);
 				}
-				else if(project.getStatus() == status.IN_PROCESS && project.getPublications().size() > 0) {
-					project.setStatus(status.CONCLUDED);
+				else if(project.getStatus() == StatusProject.IN_PROCESS && project.getPublications().size() > 0) {
+					project.setStatus(StatusProject.CONCLUDED);
 				}
 				System.out.println("\nNovo status: " + project.getStatus().getStatusProject());
 			}
