@@ -21,6 +21,7 @@ public class Student extends Collaborator{
 	
 	@Override
 	public String toString() {
-		return "\n" + typeStudent.getTypeStudent() + "\nnome: " + getName() + ", email: " + getEmail();
+		return "\n" + typeStudent.getTypeStudent() + "\nnome: " + getName() + ", email: " + getEmail() 
+		+ "\nLista de projetos: " + getProject() + "\nLista de produção acadêmica: " + getAcademicProduction() + "\n";
 	}
 }

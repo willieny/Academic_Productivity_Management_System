@@ -41,10 +41,10 @@ public class ManagementSystem {
 					controllerProject.statusChange();
 					break;
 				case 7:
-				    // code block
+					controllerProject.associatePublication(controllerAcademic);;
 					break;
-				case 8:
-				    // code block
+				case 8: 
+					controllerCollaborator.consultCollaborator();
 					break;
 				case 9:
 					// code block

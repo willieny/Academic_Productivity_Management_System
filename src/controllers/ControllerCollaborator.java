@@ -51,6 +51,13 @@ public class ControllerCollaborator {
 		return true;
 	}
 	
+	public void consultCollaborator() {
+		System.out.print("Nome: ");
+		String name = sc.nextLine();
+		Collaborator collaborator = findCollaborator(name);
+		System.out.println(collaborator);
+	}
+	
 	public Collaborator findTeacher(String name) {
 		for(Collaborator c : collaborators) {
 			 if (c instanceof Teacher) {

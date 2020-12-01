@@ -8,7 +8,8 @@ public class Teacher extends Collaborator{
 
 	@Override
 	public String toString() {
-		return "\nProfessor" + "\nnome: " + getName() + ", email: " + getEmail();
+		return "\nProfessor" + "\nnome: " + getName() + ", email: " + getEmail() 
+		+ "\nLista de projetos: " + getProject() + "\nLista de produção acadêmica: " + getAcademicProduction() + "\n";
 	}
 
 }
