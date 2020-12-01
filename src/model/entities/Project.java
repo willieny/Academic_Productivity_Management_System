@@ -6,7 +6,7 @@ import java.util.Date;
 
 import model.enums.StatusProject;
 
-public class Project {
+public class Project implements Comparable<Project>{
 
 	private String title;
 	private Date start;
@@ -124,10 +124,17 @@ public class Project {
 	}
 	
 	@Override
+	public int compareTo(Project o) {
+		if (getFinish() == null || o.getFinish() == null)
+		      return 0;
+		 return getFinish().compareTo(o.getFinish());
+	}
+	
+	@Override
 	public String toString() {
 		return "\nTítulo: " + title + "\nData de início: " + sdf.format(start) + "\nData de término: " + sdf.format(finish)
 				+ "\nAgência financiadora: " + fundingAgency + "\nValor financiado: " + String.format("%.2f", amount) + "\nObjetivo: "
 				+ objective + "\nDescrição: " + description + "\nParticipantes: " + collaborators + "\nPublicações: " + publications + "\n";
 	}
-	
+
 }

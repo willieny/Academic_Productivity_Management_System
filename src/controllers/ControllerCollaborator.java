@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import model.entities.Collaborator;
+import model.entities.Project;
 import model.entities.Student;
 import model.entities.Teacher;
 import model.enums.TypeStudent;
@@ -55,6 +56,7 @@ public class ControllerCollaborator {
 		System.out.print("Nome: ");
 		String name = sc.nextLine();
 		Collaborator collaborator = findCollaborator(name);
+		SortByDate.sortProject(collaborator.getProject());
 		System.out.println(collaborator);
 	}
 	

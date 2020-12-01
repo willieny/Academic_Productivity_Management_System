@@ -2,7 +2,7 @@ package model.entities;
 
 import java.util.ArrayList;
 
-public abstract class AcademicProduction {
+public abstract class AcademicProduction{
 	
 	private String title;
 	private Project project;
@@ -43,4 +43,5 @@ public abstract class AcademicProduction {
 	
 	@Override
 	public abstract String toString();
+
 }
