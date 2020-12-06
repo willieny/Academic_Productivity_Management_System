@@ -19,7 +19,7 @@ public class ControllerAcademicProduction {
 	
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy");
 	
-	private ArrayList<AcademicProduction> academicProductions = new ArrayList<AcademicProduction>();
+	protected ArrayList<AcademicProduction> academicProductions = new ArrayList<AcademicProduction>();
 	
 	public void register(ControllerCollaborator controllerCollaborator) throws ParseException {
 		
@@ -60,6 +60,25 @@ public class ControllerAcademicProduction {
 		academicProduction.addAuthor(collaborator);
 		collaborator.addAcademicProduction(academicProduction);
 		System.out.println(academicProduction);
+	}
+	
+	public int numberOfPublication() {
+		int publication = 0;
+		for(AcademicProduction p : academicProductions) {
+			if(p instanceof Publication) {
+				publication+=1;
+			}
+		}
+		return publication;
+	}
+	public int numberOfOrientation() {
+		int orientation = 0;
+		for(AcademicProduction p : academicProductions) {
+			if(p instanceof Orientation) {
+				orientation+=1;
+			}
+		}
+		return orientation;
 	}
 	
 	public AcademicProduction findAcademicProduction(String title) {

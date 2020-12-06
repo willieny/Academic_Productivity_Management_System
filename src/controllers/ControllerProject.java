@@ -108,9 +108,9 @@ public class ControllerProject {
 		System.out.print("Título do projeto: ");
 		String title = sc.nextLine();
 		Project project = findProject(title);
-		System.out.println("Título da publicação: ");
+		System.out.print("Título da publicação: ");
 		String titlePublication = sc.nextLine();
-		Publication publication = (Publication)controllerAcademicProduction.findAcademicProduction(titlePublication);
+		Publication publication = (Publication) controllerAcademicProduction.findAcademicProduction(titlePublication);
 		project.addPublication(publication);	
 	}
 	
@@ -119,6 +119,39 @@ public class ControllerProject {
 		String title = sc.nextLine();
 		Project project = findProject(title);
 		System.out.print(project + "\nParticipantes" + project.getCollaborators() + "\nPublicações" + project.getPublications());
+	}
+	
+	public int numberOfInPreparation() {
+		int in_preparation = 0;
+		
+		for(Project j : projects) {
+			if(j.getStatus() == StatusProject.IN_PREPARATION) {
+				in_preparation+=1;
+			}
+		}
+		return in_preparation;
+	}
+	
+	public int numberOfInProcess() {
+		int in_process = 0;
+		
+		for(Project j : projects) {
+			if(j.getStatus() == StatusProject.IN_PROCESS) {
+				in_process+=1;
+			}
+		}
+		return in_process;
+	}
+	
+	public int numberOfConcluded() {
+		int concluded = 0;
+		
+		for(Project j : projects) {
+			if(j.getStatus() == StatusProject.CONCLUDED) {
+				concluded+=1;
+			}
+		}
+		return concluded;
 	}
 	
 	public Project findProject(String title) {

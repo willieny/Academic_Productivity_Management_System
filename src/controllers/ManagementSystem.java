@@ -49,7 +49,13 @@ public class ManagementSystem {
 					controllerProject.consultProject();
 					break;
 				case 10:
-					// code block
+					System.out.println("Número de colaboradores: " + controllerCollaborator.collaborators.size());
+					System.out.println("Número de projetos em elaboração: " + controllerProject.numberOfInPreparation());
+					System.out.println("Número de projetos em andamento: " + controllerProject.numberOfInProcess());
+					System.out.println("Número de projetos concluídos: " + controllerProject.numberOfConcluded());
+					System.out.println("Número total de projetos: " + controllerProject.projects.size());
+					System.out.println("Número de produções acadêmicas" + "\n- publicações: " + controllerAcademic.numberOfPublication() 
+										+ "\n- orientações: " + controllerAcademic.numberOfOrientation());
 					break;
 				case 0:
 					sair = true;

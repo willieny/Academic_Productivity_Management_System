@@ -14,7 +14,7 @@ public class Menu {
 				+ "[7] Associar produção acadêmica a um projeto\n"
 				+ "[8] Consultar colaborador\n"
 				+ "[9] Consultar projeto\n"
-				+ "[10] Relatório de produção acadêmica\n"
+				+ "[10] Relatório de produções do laboratório\n"
 				+ "[0] Sair\n"
 				+ "==> ");
 	}
