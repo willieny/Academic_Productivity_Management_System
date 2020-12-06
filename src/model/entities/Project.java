@@ -125,9 +125,9 @@ public class Project implements Comparable<Project>{
 	
 	@Override
 	public String toString() {
-		return "\nTítulo: " + title + "\nData de início: " + sdf.format(start) + "\nData de término: " + sdf.format(finish)
-				+ "\nAgência financiadora: " + fundingAgency + "\nValor financiado: " + String.format("%.2f", amount) + "\nObjetivo: "
-				+ objective + "\nDescrição: " + description + "\nParticipantes: " + collaborators + "\nPublicações: " + publications + "\n";
+		return "\nTítulo: " + getTitle() + "\nData de início: " + sdf.format(start) + "\nData de término: " + sdf.format(finish)
+				+ "\nAgência financiadora: " + getFundingAgency() + "\nValor financiado: " + String.format("%.2f", amount) + "\nObjetivo: "
+				+ getObjective() + "\nDescrição: " + getDescription();
 	}
 
 	@Override

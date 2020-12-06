@@ -49,17 +49,19 @@ public class ControllerProject {
 	public void allocationOfParticipants(ControllerCollaborator controllerCollaborator) {
 		System.out.print("Título do projeto: ");
 		String title = sc.nextLine();
+		
 		Project project = findProject(title);
 		
 		if(project.getStatus() == StatusProject.IN_PROCESS) {
 			System.out.print("Nome do colaborador a ser alocado: ");
 			String name = sc.nextLine();
+			
 			Collaborator collaborator = controllerCollaborator.findCollaborator(name);
 			
 			if(project.getCollaborators().isEmpty()) {
 				if(controllerCollaborator.isTeacher(collaborator)) {
-					project.addCollaborator(collaborator);
-					//collaborator.addProject(project);
+					project.addCollaborator(collaborator);	
+					collaborator.addProject(project);
 				}
 				else {
 					System.out.println("O projeto não possui professores alocados. Adicione pelo menos um.");
@@ -67,7 +69,7 @@ public class ControllerProject {
 			}
 			else {
 				project.addCollaborator(collaborator);
-				//collaborator.addProject(project);
+				collaborator.addProject(project);
 			}
 		}
 		else {
@@ -110,6 +112,13 @@ public class ControllerProject {
 		String titlePublication = sc.nextLine();
 		Publication publication = (Publication)controllerAcademicProduction.findAcademicProduction(titlePublication);
 		project.addPublication(publication);	
+	}
+	
+	public void consultProject() {
+		System.out.print("Título: ");
+		String title = sc.nextLine();
+		Project project = findProject(title);
+		System.out.print(project + "\nParticipantes" + project.getCollaborators() + "\nPublicações" + project.getPublications());
 	}
 	
 	public Project findProject(String title) {

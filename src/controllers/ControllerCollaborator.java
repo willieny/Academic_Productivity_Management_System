@@ -56,7 +56,7 @@ public class ControllerCollaborator {
 		String name = sc.nextLine();
 		Collaborator collaborator = findCollaborator(name);
 		SortByDate.sortProject(collaborator.getProject());
-		System.out.println(collaborator);
+		System.out.print(collaborator + "\nProjetos" + collaborator.getProject() + "\nPublicações" + collaborator.getAcademicProduction());
 	}
 	
 	public Collaborator findTeacher(String name) {

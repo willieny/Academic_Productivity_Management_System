@@ -29,16 +29,15 @@ public class ManagementSystem {
 					break;
 				case 3:
 				    controllerAcademic.register(controllerCollaborator);
-					break;
+					break;	
 				case 4:
-				    controllerProject.allocationOfParticipants(controllerCollaborator);
-				    controllerProject.print();
+					controllerProject.statusChange();
 					break;
 				case 5:
-					controllerAcademic.allocationOfParticipants(controllerCollaborator);
+					controllerProject.allocationOfParticipants(controllerCollaborator);
 					break;
 				case 6:
-					controllerProject.statusChange();
+					controllerAcademic.allocationOfParticipants(controllerCollaborator);
 					break;
 				case 7:
 					controllerProject.associatePublication(controllerAcademic);;
@@ -47,7 +46,7 @@ public class ManagementSystem {
 					controllerCollaborator.consultCollaborator();
 					break;
 				case 9:
-					// code block
+					controllerProject.consultProject();
 					break;
 				case 10:
 					// code block

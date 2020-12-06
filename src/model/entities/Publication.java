@@ -34,7 +34,7 @@ public class Publication extends AcademicProduction implements Comparable<Public
 	
 	@Override
 	public String toString() {
-		return "\nTítulo: " + getTitle() + "\nConferência: " + conference + "\nAno de publicação: " + sdf.format(yearPublication) + "\nAutores: " + getAuthors() +"\n";
+		return "\nTítulo: " + getTitle() + "\nConferência: " + conference + "\nAno de publicação: " + sdf.format(yearPublication);
 	}
 
 	@Override
