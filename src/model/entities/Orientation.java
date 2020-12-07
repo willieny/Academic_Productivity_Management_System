@@ -19,7 +19,7 @@ public class Orientation extends AcademicProduction{
 	
 	@Override
 	public String toString() {
-		return "\nTítulo: " + getTitle() + teacher + "\nAutores: " + getAuthors() + "\n";
+		return "\nTítulo: " + getTitle() + "\nAutores: " + getAuthors() + "\n";
 	}
 	
 }

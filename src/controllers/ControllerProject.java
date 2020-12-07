@@ -101,16 +101,15 @@ public class ControllerProject {
 				System.out.println("\nNovo status: " + project.getStatus().getStatusProject());
 			}
 		}
-		System.out.println(project);
 	}
 	
 	public void associatePublication(ControllerAcademicProduction controllerAcademicProduction) {
 		System.out.print("Título do projeto: ");
 		String title = sc.nextLine();
-		Project project = findProject(title);
 		System.out.print("Título da publicação: ");
 		String titlePublication = sc.nextLine();
-		Publication publication = (Publication) controllerAcademicProduction.findAcademicProduction(titlePublication);
+		Project project = findProject(title);
+		Publication publication = controllerAcademicProduction.findPublication(titlePublication);
 		project.addPublication(publication);	
 	}
 	
@@ -118,6 +117,7 @@ public class ControllerProject {
 		System.out.print("Título: ");
 		String title = sc.nextLine();
 		Project project = findProject(title);
+		SortByDate.sortPublication(project.getPublications());
 		System.out.print(project + "\nParticipantes" + project.getCollaborators() + "\nPublicações" + project.getPublications());
 	}
 	

@@ -62,8 +62,8 @@ public class ManagementSystem {
 					System.out.println("| Número total de projetos: " + controllerProject.projects.size()
 					+ "                                 |");
 					System.out.println("| Número de produções acadêmicas:                             |" + "\n| - publicações: " 
-					+ controllerAcademic.numberOfPublication() 
-					+ "                                            |" + "\n| - orientações: " + controllerAcademic.numberOfOrientation()+ "                                            |");
+					+ controllerAcademic.publications.size() 
+					+ "                                            |" + "\n| - orientações: " + controllerAcademic.orientations.size() + "                                            |");
 					System.out.println("#-------------------------------------------------------------#");
 					break;
 				case 0:

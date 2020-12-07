@@ -25,7 +25,6 @@ public class ControllerCollaborator {
 		String email = sc.nextLine();
 		
 		typeCollaborator(type, name, email);
-		print();
 	}
 	
 	public boolean typeCollaborator(int type, String name, String email) {
@@ -56,7 +55,13 @@ public class ControllerCollaborator {
 		String name = sc.nextLine();
 		Collaborator collaborator = findCollaborator(name);
 		SortByDate.sortProject(collaborator.getProject());
-		System.out.print(collaborator + "\nProjetos" + collaborator.getProject() + "\nPublicações" + collaborator.getAcademicProduction());
+		SortByDate.sortPublication(collaborator.getPublications());
+		System.out.print(collaborator + "\nProjetos" + collaborator.getProject() + "\nPublicações" + collaborator.getPublications());
+		if(collaborator instanceof Teacher) {
+			Teacher teacher = (Teacher)collaborator;
+			System.out.println("\nOrientações" + teacher.getOrientations());
+		}
+		
 	}
 	
 	public Collaborator findTeacher(String name) {

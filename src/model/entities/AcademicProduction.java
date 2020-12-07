@@ -5,7 +5,6 @@ import java.util.ArrayList;
 public abstract class AcademicProduction {
 	
 	private String title;
-	private Project project;
 	private ArrayList<Collaborator> authors;
 	
 	public AcademicProduction(String title) {
@@ -19,14 +18,6 @@ public abstract class AcademicProduction {
 
 	public void setTitle(String title) {
 		this.title = title;
-	}
-
-	public Project getProject() {
-		return project;
-	}
-
-	public void setProject(Project project) {
-		this.project = project;
 	}
 
 	public ArrayList<Collaborator> getAuthors() {

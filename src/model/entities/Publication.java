@@ -7,6 +7,7 @@ public class Publication extends AcademicProduction implements Comparable<Public
 
 	private String conference;
 	private Date yearPublication;
+	private Project project;
 	
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy");
 	
@@ -32,6 +33,14 @@ public class Publication extends AcademicProduction implements Comparable<Public
 		this.yearPublication = yearPublication;
 	}
 	
+	public Project getProject() {
+		return project;
+	}
+
+	public void setProject(Project project) {
+		this.project = project;
+	}
+
 	@Override
 	public String toString() {
 		return "\nTítulo: " + getTitle() + "\nConferência: " + conference + "\nAno de publicação: " + sdf.format(yearPublication);

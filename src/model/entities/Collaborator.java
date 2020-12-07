@@ -9,7 +9,7 @@ public abstract class Collaborator {
 	
 	private ArrayList<Project> projects = new ArrayList<Project>();
 	
-	private ArrayList<AcademicProduction> academicProductions = new ArrayList<AcademicProduction>();
+	private ArrayList<Publication> publications = new ArrayList<Publication>();
 
 	public Collaborator(String name, String email) {
 		this.name = name;
@@ -44,16 +44,16 @@ public abstract class Collaborator {
 		projects.remove(project);
 	}
 
-	public ArrayList<AcademicProduction> getAcademicProduction() {
-		return academicProductions;
+	public ArrayList<Publication> getPublications() {
+		return publications;
 	}
 
-	public void addAcademicProduction(AcademicProduction academicProduction) {
-		academicProductions.add(academicProduction);
+	public void addPublication(Publication publication) {
+		publications.add(publication);
 	}
 	
-	public void removeAcademicProduction(AcademicProduction academicProduction) {
-		academicProductions.remove(academicProduction);
+	public void removePublication(Publication publication) {
+		publications.remove(publication);
 	}
 	
 	@Override
