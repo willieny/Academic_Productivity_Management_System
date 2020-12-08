@@ -6,10 +6,10 @@ public class Teacher extends Collaborator{
 	
 	private ArrayList<Orientation> orientations = new ArrayList<Orientation>();
 
-	public Teacher(String name, String email) {
-		super(name, email);
+	public Teacher(Integer id, String name, String email) {
+		super(id, name, email);
 	}
-	
+
 	public ArrayList<Orientation> getOrientations() {
 		return orientations;
 	}
@@ -24,7 +24,7 @@ public class Teacher extends Collaborator{
 
 	@Override
 	public String toString() {
-		return "\nProfessor" + "\nnome: " + getName() + ", email: " + getEmail();
+		return "\nid: " + getId() + "\nNome: " + getName() + "\ne-mail: " + getEmail() + "\nCargo: " + "Professor";
 	}
 
 }

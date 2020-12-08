@@ -22,31 +22,47 @@ public class ControllerAcademicProduction {
 	protected ArrayList<Orientation> orientations = new ArrayList<Orientation>();
 	
 	public void register(ControllerCollaborator controllerCollaborator) throws ParseException {
-		
 		Menu.showMenuAcademicProduction();
 		int type = sc.nextInt();
 		sc.nextLine();
 		System.out.print("Título: ");
 		String title = sc.nextLine();
-		
 		switch(type) {
 			case 1: 
-				System.out.print("Conferência onde foi publicada: ");
-				String conference = sc.nextLine();
-				System.out.print("Ano de publicação: ");
-				Date year = sdf.parse(sc.nextLine());
-				Publication publication = new Publication(title, conference, year);
-				publications.add(publication);
+				if(checkTitlePublication(title)) {
+					System.out.println("Título já foi cadastrado.");	
+				}else {
+					System.out.print("Conferência onde foi publicada: ");
+					String conference = sc.nextLine();
+					System.out.print("Ano de publicação: ");
+					Date year = sdf.parse(sc.nextLine());
+					Publication publication = new Publication(title, conference, year);
+					publications.add(publication);
+					System.out.println("\nPublicação cadastrada com sucesso!");
+				}
 				break;
 			case 2:
-				System.out.print("Nome do professor: ");
-				String name = sc.nextLine();
-				Teacher teacher = (Teacher)controllerCollaborator.findTeacher(name);
-				Orientation orientation = new Orientation(title, teacher);
-				orientations.add(orientation);
-				teacher.addOrientation(orientation);
+				if(checkTitleOrientation(title)) {
+					System.out.println("Título já foi cadastrado.");
+				}
+				else {
+					System.out.print("Id do professor: ");
+					int id = sc.nextInt();
+					sc.nextLine();
+					if(controllerCollaborator.checkId(id)) {
+						Teacher teacher = (Teacher)controllerCollaborator.findTeacher(id);
+						Orientation orientation = new Orientation(title, teacher);
+						orientations.add(orientation);
+						teacher.addOrientation(orientation);
+						System.out.println("\nOrientação cadastrada com sucesso!");
+					}else {
+						System.out.println("Id não encontrado.");
+					}
+				}
 				break;
 		}
+		System.out.println("Pressione ENTER para continuar.");
+		sc.nextLine();
 	}
 	
 	public void allocationOfParticipants(ControllerCollaborator controllerCollaborator) {		
@@ -55,22 +71,37 @@ public class ControllerAcademicProduction {
 		sc.nextLine(); 
 		System.out.print("Título da produção acadêmica: ");
 		String title = sc.nextLine();
-		System.out.print("Nome do colaborador a ser alocado: ");
-		String name = sc.nextLine();
-		Collaborator collaborator = controllerCollaborator.findCollaborator(name);
-		switch(type) {
-		case 1:
-			Publication publication = findPublication(title);
-			publication.addAuthor(collaborator);
-			collaborator.addPublication(publication);
-			break;
-		case 2:
-			Teacher teacher = (Teacher)collaborator;
-			Orientation orientation = findOrientation(title);
-			orientation.addAuthor(collaborator);
-			teacher.addOrientation(orientation);
-			break;
+		System.out.print("Id do colaborador a ser alocado: ");
+		int id = sc.nextInt();
+		sc.nextLine();
+		if(controllerCollaborator.checkId(id)) {
+			Collaborator collaborator = controllerCollaborator.findCollaborator(id);
+			switch(type) {
+			case 1:
+				if(checkTitlePublication(title)) {
+					Publication publication = findPublication(title);
+					publication.addAuthor(collaborator);
+					collaborator.addPublication(publication);
+					System.out.println(collaborator.getName() + " foi alocado(a) na publicação.");
+				}else {
+					System.out.println("\nTítulo não encontrado.");
+				}	
+				break;
+			case 2:
+				if(checkTitleOrientation(title)) {
+					Orientation orientation = findOrientation(title);
+					orientation.addAuthor(collaborator);
+					System.out.println(collaborator.getName() + " foi alocado(a) na orientação.");
+				}else {
+					System.out.println("\nTítulo não encontrado.");
+				}
+				break;
+			}
+		}else {
+			System.out.println("\nId não encontrado.");
 		}
+		System.out.println("Pressione ENTER para continuar.");
+		sc.nextLine();
 	}
 	
 	public Publication findPublication(String title) {
@@ -91,4 +122,21 @@ public class ControllerAcademicProduction {
 		return null;
 	}
 	
+	public boolean checkTitlePublication(String title) {
+		for(Publication p : publications) {
+			if(p.getTitle().equals(title)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public boolean checkTitleOrientation(String title) {
+		for(Orientation o : orientations) {
+			if(o.getTitle().equals(title)) {
+				return true;
+			}
+		}
+		return false;
+	}
 }

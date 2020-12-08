@@ -6,8 +6,8 @@ public class Student extends Collaborator{
 
 	private TypeStudent typeStudent;
 
-	public Student(String name, String email, TypeStudent typeStudent) {
-		super(name, email);
+	public Student(Integer id, String name, String email, TypeStudent typeStudent) {
+		super(id, name, email);
 		this.typeStudent = typeStudent;
 	}
 
@@ -21,6 +21,6 @@ public class Student extends Collaborator{
 	
 	@Override
 	public String toString() {
-		return "\n" + typeStudent.getTypeStudent() + "\nnome: " + getName() + ", email: " + getEmail();
+		return "\nid: " + getId() + "\nNome: " + getName() + "\ne-mail: " + getEmail() + "\nCargo: " + typeStudent.getTypeStudent();
 	}
 }

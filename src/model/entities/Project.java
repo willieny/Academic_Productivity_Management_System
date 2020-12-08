@@ -8,6 +8,7 @@ import model.enums.StatusProject;
 
 public class Project implements Comparable<Project>{
 
+	private int id;
 	private String title;
 	private Date start;
 	private Date finish;
@@ -23,8 +24,9 @@ public class Project implements Comparable<Project>{
 	
 	SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
-	public Project(String title, Date start, Date finish, String fundingAgency, Double amount, String objective,
+	public Project(int id, String title, Date start, Date finish, String fundingAgency, Double amount, String objective,
 			String description, StatusProject status) {
+		this.id = id;
 		this.title = title;
 		this.start = start;
 		this.finish = finish;
@@ -33,6 +35,14 @@ public class Project implements Comparable<Project>{
 		this.objective = objective;
 		this.description = description;
 		this.status = StatusProject.IN_PREPARATION;
+	}
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getTitle() {
@@ -125,9 +135,9 @@ public class Project implements Comparable<Project>{
 	
 	@Override
 	public String toString() {
-		return "\nTítulo: " + getTitle() + "\nData de início: " + sdf.format(start) + "\nData de término: " + sdf.format(finish)
+		return "\nid: " + getId()+ "\nTítulo: " + getTitle() + "\nData de início: " + sdf.format(start) + "\nData de término: " + sdf.format(finish)
 				+ "\nAgência financiadora: " + getFundingAgency() + "\nValor financiado: " + String.format("%.2f", amount) + "\nObjetivo: "
-				+ getObjective() + "\nDescrição: " + getDescription();
+				+ getObjective() + "\nDescrição: " + getDescription() + "\nStatus: " + getStatus().getStatusProject();
 	}
 
 	@Override
