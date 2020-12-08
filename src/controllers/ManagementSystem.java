@@ -32,24 +32,27 @@ public class ManagementSystem {
 				    controllerAcademic.register(controllerCollaborator);
 					break;	
 				case 4:
-					controllerProject.statusChange();
+					controllerProject.editProjectInformation();
 					break;
 				case 5:
-					controllerProject.allocationOfParticipants(controllerCollaborator);
+					controllerProject.statusChange();
 					break;
 				case 6:
-					controllerAcademic.allocationOfParticipants(controllerCollaborator);
+					controllerProject.allocationOfParticipants(controllerCollaborator);
 					break;
 				case 7:
+					controllerAcademic.allocationOfParticipants(controllerCollaborator);
+					break;
+				case 8:
 					controllerProject.associatePublication(controllerAcademic);;
 					break;
-				case 8: 
+				case 9: 
 					controllerCollaborator.consultCollaborator();
 					break;
-				case 9:
+				case 10:
 					controllerProject.consultProject();
 					break;
-				case 10:
+				case 11:
 					System.out.println("#----------- Relatório de produções do laboratório -----------#");
 					System.out.println("| Número de colaboradores: " + controllerCollaborator.collaborators.size() 
 					+ "                                  |");

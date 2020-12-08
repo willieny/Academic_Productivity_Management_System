@@ -51,6 +51,43 @@ public class ControllerProject {
 		sc.nextLine();
 	}
 	
+	public void editProjectInformation() throws ParseException {
+		System.out.print("Id do projeto: ");
+		int id = sc.nextInt();
+		sc.nextLine();
+		Project project = findProject(id);
+		if(checkId(id)) {
+			System.out.print("Título: ");
+			String title = sc.nextLine();
+			project.setTitle(title);
+			System.out.print("Data de início (dd/MM/yyyy): ");
+			Date start = sdf.parse(sc.nextLine());
+			project.setStart(start);
+			System.out.print("Data de término (dd/MM/yyyy): ");
+			Date finish = sdf.parse(sc.nextLine());
+			project.setFinish(finish);
+			System.out.print("Agência financiadora: ");
+			String agency = sc.nextLine();
+			project.setFundingAgency(agency);
+			System.out.print("Valor financiado: ");
+			double amount = sc.nextDouble();
+			sc.nextLine();
+			project.setAmount(amount);
+			System.out.print("Objetivo: ");
+			String objective = sc.nextLine();
+			project.setObjective(objective);
+			System.out.print("Descrição: ");
+			String description = sc.nextLine();
+			project.setDescription(description);
+			System.out.println(project);
+			System.out.println("\nProjeto foi cadastrado com sucesso!");
+		}else {
+			System.out.println("\nId do projeto não encontrado.");
+		}
+		System.out.println("Pressione ENTER para continuar.");
+		sc.nextLine();
+	}
+	
 	public void allocationOfParticipants(ControllerCollaborator controllerCollaborator) {
 		System.out.print("Id do projeto: ");
 		int id = sc.nextInt();
@@ -67,7 +104,7 @@ public class ControllerProject {
 						if(controllerCollaborator.isTeacher(collaborator)) {
 							project.addCollaborator(collaborator);	
 							collaborator.addProject(project);
-							System.out.println("\n" + collaborator.getName() + " foi alocado no projeto.");
+							System.out.println("\nColaborador foi alocado no projeto.");
 						}
 						else {
 							System.out.println("\nO projeto não possui professores alocados. Adicione pelo menos um.");
@@ -81,13 +118,13 @@ public class ControllerProject {
 							}else {
 								project.addCollaborator(collaborator);
 								collaborator.addProject(project);
-								System.out.println("\n" + collaborator.getName() + " foi alocado no projeto.");
+								System.out.println("\nColaborador foi alocado no projeto.");
 							}
 						}
 						else {
 							project.addCollaborator(collaborator);
 							collaborator.addProject(project);
-							System.out.println("\n" + collaborator.getName() + " foi alocado no projeto.");
+							System.out.println("\nColaborador foi alocado no projeto.");
 						}
 					}
 				}else {
@@ -158,11 +195,45 @@ public class ControllerProject {
 		System.out.print("Id do projeto: ");
 		int id = sc.nextInt();
 		sc.nextLine();
-		Project project = findProject(id);
-		SortByDate.sortPublication(project.getPublications());
-		System.out.print(project + "\nParticipantes" + project.getCollaborators() + "\nPublicações" + project.getPublications());
+		if(checkId(id)) {
+			Project project = findProject(id);
+			SortByDate.sortPublication(project.getPublications());
+			System.out.println(project + "\n");
+			if(project.getCollaborators().size()>0) {
+				int k=1;
+				System.out.println("-----------------------------");
+				for(int i=0; i<project.getCollaborators().size(); i++) {
+					System.out.print("Colaborador #" + k);
+					System.out.println(project.getCollaborators().get(i) + "\n");
+					k++;
+				}
+				System.out.println("-----------------------------");
+			}else {
+				System.out.println("-----------------------------");
+				System.out.println("Sem colaboradores.");
+				System.out.println("-----------------------------");
+			}
+			if(project.getPublications().size()>0) {
+				int l=1;
+				System.out.println("-----------------------------");
+				for(int i=0; i<project.getPublications().size(); i++) {
+					System.out.print("Publicação #" + l);
+					System.out.println(project.getPublications().get(i) + "\n");
+					l++;
+				}
+				System.out.println("-----------------------------");
+			}else {
+				System.out.println("-----------------------------");
+				System.out.println("Sem publicações.");
+				System.out.println("-----------------------------");
+			}
+		}else {
+			System.out.println("\nId não encontrado.");
+		}
+		System.out.println("Pressione ENTER para continuar.");
+		sc.nextLine();
 	}
-	
+
 	public int numberOfInPreparation() {
 		int in_preparation = 0;
 		

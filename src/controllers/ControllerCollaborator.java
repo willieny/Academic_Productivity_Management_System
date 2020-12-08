@@ -31,7 +31,7 @@ public class ControllerCollaborator {
 		}
 		typeCollaborator(type, id, name, email);
 		System.out.println(findCollaborator(id));
-		System.out.println("\n" + name + " foi cadastrado(a) com sucesso!");
+		System.out.println("\nColaborador foi cadastrado com sucesso!");
 		System.out.println("Pressione ENTER para continuar.");
 		sc.nextLine();
 	}
@@ -67,10 +67,52 @@ public class ControllerCollaborator {
 			Collaborator collaborator = findCollaborator(id);
 			SortByDate.sortProject(collaborator.getProject());
 			SortByDate.sortPublication(collaborator.getPublications());
-			System.out.print(collaborator + "\nProjetos" + collaborator.getProject() + "\nPublicações" + collaborator.getPublications());
+			System.out.println(collaborator + "\n");
+			if(collaborator.getProject().size() > 0) {
+				int k=1;
+				System.out.println("-----------------------------");
+				for(int i=0; i<collaborator.getProject().size(); i++) {
+					System.out.print("Projeto #" + k);
+					System.out.println(collaborator.getProject().get(i) + "\n");
+					k++;
+				}
+				System.out.println("-----------------------------");
+			}else {
+				System.out.println("-----------------------------");
+				System.out.println("Sem projetos.");
+				System.out.println("-----------------------------");
+			}
+			if(collaborator.getPublications().size() > 0) {
+				int l=1;
+				System.out.println("-----------------------------");
+				for(int i=0; i<collaborator.getPublications().size(); i++) {
+					System.out.print("Publicação #" + l);
+					System.out.println(collaborator.getPublications().get(i) + "\n");
+					l++;
+				}
+				System.out.println("-----------------------------");
+			}else {
+				System.out.println("-----------------------------");
+				System.out.println("Sem publicações.");
+				System.out.println("-----------------------------");
+			}
+
 			if(collaborator instanceof Teacher) {
 				Teacher teacher = (Teacher)collaborator;
-				System.out.println("\nOrientações" + teacher.getOrientations());
+				if(teacher.getOrientations().size() > 0) {
+					int m=1;
+					System.out.println("-----------------------------");
+					for(int i=0; i<teacher.getOrientations().size(); i++) {
+						System.out.print("Orientação #" + m);
+						System.out.println(teacher.getOrientations().get(i) + "\n");
+						m++;
+					}
+					System.out.println("-----------------------------");
+				}else {
+					System.out.println("-----------------------------");
+					System.out.println("Sem orientações.");
+					System.out.println("-----------------------------");
+				}
 			}
 		}else {
 			System.out.println("\nId não encontrado.");

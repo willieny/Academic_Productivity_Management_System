@@ -38,7 +38,7 @@ public class ControllerAcademicProduction {
 					Date year = sdf.parse(sc.nextLine());
 					Publication publication = new Publication(title, conference, year);
 					publications.add(publication);
-					System.out.println("\nPublicação cadastrada com sucesso!");
+					System.out.println("\nPublicação foi cadastrada com sucesso!");
 				}
 				break;
 			case 2:
@@ -54,7 +54,7 @@ public class ControllerAcademicProduction {
 						Orientation orientation = new Orientation(title, teacher);
 						orientations.add(orientation);
 						teacher.addOrientation(orientation);
-						System.out.println("\nOrientação cadastrada com sucesso!");
+						System.out.println("\nOrientação foi cadastrada com sucesso!");
 					}else {
 						System.out.println("Id não encontrado.");
 					}
@@ -82,7 +82,7 @@ public class ControllerAcademicProduction {
 					Publication publication = findPublication(title);
 					publication.addAuthor(collaborator);
 					collaborator.addPublication(publication);
-					System.out.println(collaborator.getName() + " foi alocado(a) na publicação.");
+					System.out.println("\nAutor foi alocado na publicação.");
 				}else {
 					System.out.println("\nTítulo não encontrado.");
 				}	
@@ -91,7 +91,7 @@ public class ControllerAcademicProduction {
 				if(checkTitleOrientation(title)) {
 					Orientation orientation = findOrientation(title);
 					orientation.addAuthor(collaborator);
-					System.out.println(collaborator.getName() + " foi alocado(a) na orientação.");
+					System.out.println("\nAutor foi alocado na orientação.");
 				}else {
 					System.out.println("\nTítulo não encontrado.");
 				}
