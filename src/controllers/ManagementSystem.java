@@ -47,12 +47,15 @@ public class ManagementSystem {
 					controllerProject.associatePublication(controllerAcademic);;
 					break;
 				case 9: 
+					controllerProject.removerCollaborator(controllerCollaborator);
+					break;
+				case 10: 
 					controllerCollaborator.consultCollaborator();
 					break;
-				case 10:
+				case 11:
 					controllerProject.consultProject();
 					break;
-				case 11:
+				case 12:
 					System.out.println("#----------- Relatório de produções do laboratório -----------#");
 					System.out.println("| Número de colaboradores: " + controllerCollaborator.collaborators.size() 
 					+ "                                  |");

@@ -94,9 +94,9 @@ public class ControllerProject {
 		System.out.print("Id do colaborador a ser alocado: ");
 		int idc = sc.nextInt();
 		sc.nextLine();
-		Project project = findProject(id);
 		if(checkId(id) && controllerCollaborator.checkId(idc)) {
-			if(project.getStatus() == StatusProject.IN_PROCESS) {
+			Project project = findProject(id);
+			if(project.getStatus() == StatusProject.IN_PREPARATION) {
 				Collaborator collaborator = controllerCollaborator.findCollaborator(idc);
 				if(haveCollarator(project, idc)) {
 					System.out.println("\nColaborador já está alocado.");
@@ -112,21 +112,9 @@ public class ControllerProject {
 						}
 					}
 					else {
-						if(controllerCollaborator.isStudent(collaborator) && collaborator.getProject().size() >= 2) {
-							Student student = (Student) collaborator;
-							if(student.getTypeStudent() == TypeStudent.GRADUATE_STUDENT) {
-								System.out.println("\nAluno de graduação não pode fazer parte de mais de 2 projetos.");
-							}else {
-								project.addCollaborator(collaborator);
-								collaborator.addProject(project);
-								System.out.println("\nColaborador foi alocado no projeto.");
-							}
-						}
-						else {
-							project.addCollaborator(collaborator);
-							collaborator.addProject(project);
-							System.out.println("\nColaborador foi alocado no projeto.");
-						}
+						project.addCollaborator(collaborator);
+						collaborator.addProject(project);
+						System.out.println("\nColaborador foi alocado no projeto.");
 					}
 				}
 			}		
@@ -151,17 +139,23 @@ public class ControllerProject {
 			char c = sc.next().charAt(0);
 			sc.nextLine();
 			if(c == 's') {
-				if(checkInformation(project)) {
+				if(checkInformation(project) && project.getCollaborators().size() > 0) {
 					System.out.println("\nInformações básicas incompletas.");
 				}
 				else {
 					if(project.getStatus() == StatusProject.IN_PREPARATION) {
-						project.setStatus(StatusProject.IN_PROCESS);
+						if(studentMore2InProgress(project)) {
+							System.out.println("\nO estudante do Id:" + IdstudentMore2InProgress(project) + " possui mais de 2 projetos \"Em andamento\". "
+									+ "\nPara alterar o status do projeto atual é necessário que remova o estudante especificado.");
+						}else {
+							project.setStatus(StatusProject.IN_PROCESS);
+							System.out.println("\nNovo status: " + project.getStatus().getStatusProject());
+						}
 					}
 					else if(project.getStatus() == StatusProject.IN_PROCESS && project.getPublications().size() > 0) {
 						project.setStatus(StatusProject.CONCLUDED);
-					}
-					System.out.println("\nNovo status: " + project.getStatus().getStatusProject());
+						System.out.println("\nNovo status: " + project.getStatus().getStatusProject());
+					}	
 				}
 			}
 		}else {
@@ -235,6 +229,64 @@ public class ControllerProject {
 		}
 		System.out.println("Pressione ENTER para continuar.");
 		sc.nextLine();
+	}
+	
+	public void removerCollaborator(ControllerCollaborator controllerCollaborator) {
+		System.out.print("Id do projeto: ");
+		int id = sc.nextInt();
+		System.out.print("Id do colaborador a ser alocado: ");
+		int idc = sc.nextInt();
+		sc.nextLine();
+		if(checkId(id) && controllerCollaborator.checkId(idc)) {
+			Project project = findProject(id);
+			Collaborator collaborator = controllerCollaborator.findCollaborator(idc);
+			project.removeCollaborator(collaborator);
+			collaborator.removeProject(project);
+			System.out.println("\nColaborador foi removido.");
+		}else {
+			System.out.println("\nId não encontrado.");
+		}
+		System.out.println("Pressione ENTER para continuar.");
+		sc.nextLine();
+	}
+	
+	public boolean studentMore2InProgress(Project project) {
+		for(Collaborator c : project.getCollaborators()) {
+			if(c instanceof Student) {
+				Student student = (Student)c;
+				if(student.getTypeStudent() == TypeStudent.GRADUATE_STUDENT) {
+					if(haveMore2(student) == 2) {
+						return true;
+					}
+				}
+			}
+		}
+		return false;
+	}
+	
+	public int IdstudentMore2InProgress(Project project) {
+		for(Collaborator c : project.getCollaborators()) {
+			if(c instanceof Student) {
+				Student student = (Student)c;
+				if(student.getTypeStudent() == TypeStudent.GRADUATE_STUDENT) {
+					if(haveMore2(student) == 2) {
+						return student.getId();
+					}
+				}
+
+			}
+		}
+		return 0;
+	}
+	
+	public int haveMore2(Student student) {
+		int i=0;
+		for(Project j : student.getProject()) {
+			if(j.getStatus() == StatusProject.IN_PROCESS) {
+				i++;	
+			}
+		}
+		return i;
 	}
 	
 	public boolean havePublication(Project project, String title) {

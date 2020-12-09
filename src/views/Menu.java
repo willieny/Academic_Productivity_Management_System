@@ -13,9 +13,10 @@ public class Menu {
 				+ "[6] Alocar participantes a um projeto\n"
 				+ "[7] Alocar autores a uma produção acadêmica\n"
 				+ "[8] Associar produção acadêmica a um projeto\n"
-				+ "[9] Consultar colaborador\n"
-				+ "[10] Consultar projeto\n"
-				+ "[11] Relatório de produções do laboratório\n"
+				+ "[9] Remover colaborador de um projeto\n"
+				+ "[10] Consultar colaborador\n"
+				+ "[11] Consultar projeto\n"
+				+ "[12] Relatório de produções do laboratório\n"
 				+ "[0] Sair\n"
 				+ "==> ");
 	}

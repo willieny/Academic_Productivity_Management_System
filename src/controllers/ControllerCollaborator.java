@@ -58,7 +58,7 @@ public class ControllerCollaborator {
 		collaborators.add(collaborator);
 		return true;
 	}
-	
+
 	public void consultCollaborator() {
 		System.out.print("Id do colaborador: ");
 		int id = sc.nextInt();
