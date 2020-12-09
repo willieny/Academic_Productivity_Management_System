@@ -71,6 +71,9 @@ public class ManagementSystem {
 					+ controllerAcademic.publications.size() 
 					+ "                                            |" + "\n| - orientações: " + controllerAcademic.orientations.size() + "                                            |");
 					System.out.println("#-------------------------------------------------------------#");
+					System.out.println("Pressione ENTER para continuar.");
+					sc.nextLine();
+					sc.nextLine();
 					break;
 				case 0:
 					sair = true;
