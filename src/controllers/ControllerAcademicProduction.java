@@ -80,9 +80,13 @@ public class ControllerAcademicProduction {
 			case 1:
 				if(checkTitlePublication(title)) {
 					Publication publication = findPublication(title);
-					publication.addAuthor(collaborator);
-					collaborator.addPublication(publication);
-					System.out.println("\nAutor foi alocado na publicação.");
+					if(haveAuthorPublication(publication, id)) {
+						System.out.println("\nAutor já está alocado.");
+					}else {
+						publication.addAuthor(collaborator);
+						collaborator.addPublication(publication);
+						System.out.println("\nAutor foi alocado na publicação.");
+					}
 				}else {
 					System.out.println("\nTítulo não encontrado.");
 				}	
@@ -90,8 +94,12 @@ public class ControllerAcademicProduction {
 			case 2:
 				if(checkTitleOrientation(title)) {
 					Orientation orientation = findOrientation(title);
-					orientation.addAuthor(collaborator);
-					System.out.println("\nAutor foi alocado na orientação.");
+					if(haveAuthorOrientation(orientation, id) || haveTeacher(orientation, id)) {
+						System.out.println("\nAutor já está alocado.");
+					}else {
+						orientation.addAuthor(collaborator);
+						System.out.println("\nAutor foi alocado na orientação.");
+					}
 				}else {
 					System.out.println("\nTítulo não encontrado.");
 				}
@@ -102,6 +110,31 @@ public class ControllerAcademicProduction {
 		}
 		System.out.println("Pressione ENTER para continuar.");
 		sc.nextLine();
+	}
+	
+	public boolean haveAuthorPublication(Publication publication, int id) {
+		for(Collaborator c : publication.getAuthors()) {
+			if(c.getId() == id) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public boolean haveAuthorOrientation(Orientation orientation, int id) {
+		for(Collaborator c : orientation.getAuthors()) {
+			if(c.getId() == id) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public boolean haveTeacher(Orientation orientation, int id) {
+		if(orientation.getTeacher().getId() == id) {
+			return true;
+		}
+		return false;
 	}
 	
 	public Publication findPublication(String title) {

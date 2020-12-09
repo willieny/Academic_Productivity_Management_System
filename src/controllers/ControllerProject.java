@@ -91,15 +91,16 @@ public class ControllerProject {
 	public void allocationOfParticipants(ControllerCollaborator controllerCollaborator) {
 		System.out.print("Id do projeto: ");
 		int id = sc.nextInt();
+		System.out.print("Id do colaborador a ser alocado: ");
+		int idc = sc.nextInt();
 		sc.nextLine();
 		Project project = findProject(id);
-		if(checkId(id)) {
+		if(checkId(id) && controllerCollaborator.checkId(idc)) {
 			if(project.getStatus() == StatusProject.IN_PROCESS) {
-				System.out.print("Id do colaborador a ser alocado: ");
-				int idc = sc.nextInt();
-				sc.nextLine();
-				if(controllerCollaborator.checkId(idc)) {
-					Collaborator collaborator = controllerCollaborator.findCollaborator(idc);
+				Collaborator collaborator = controllerCollaborator.findCollaborator(idc);
+				if(haveCollarator(project, idc)) {
+					System.out.println("\nColaborador já está alocado.");
+				}else {
 					if(project.getCollaborators().isEmpty()) {
 						if(controllerCollaborator.isTeacher(collaborator)) {
 							project.addCollaborator(collaborator);	
@@ -127,15 +128,13 @@ public class ControllerProject {
 							System.out.println("\nColaborador foi alocado no projeto.");
 						}
 					}
-				}else {
-					System.out.println("\nId do colaborador não encontrado.");
 				}
-			}
+			}		
 			else {
 				System.out.println("\nAltere o status do projeto para \"Em andamento\"");
 			}
 		}else {
-			System.out.println("\nId do projeto não encontrado.");
+			System.out.println("\nId do projeto ou do colaborador não encontrado.");
 		}
 		System.out.println("Pressione ENTER para continuar.");
 		sc.nextLine();
@@ -180,10 +179,14 @@ public class ControllerProject {
 		String title = sc.nextLine();
 		if(checkId(id) && controllerAcademicProduction.checkTitlePublication(title)) {
 			Project project = findProject(id);
-			Publication publication = controllerAcademicProduction.findPublication(title);
-			project.addPublication(publication);
-			publication.setProject(project);
-			System.out.println("\nA publicação foi associada ao projeto.");
+			if(havePublication(project, title)) {
+				System.out.println("\nA publicação já está associada ao projeto.");
+			}else {
+				Publication publication = controllerAcademicProduction.findPublication(title);
+				project.addPublication(publication);
+				publication.setProject(project);
+				System.out.println("\nA publicação foi associada ao projeto.");
+			}	
 		}else {
 			System.out.println("\nId ou título não encontrado.");
 		}	
@@ -233,7 +236,25 @@ public class ControllerProject {
 		System.out.println("Pressione ENTER para continuar.");
 		sc.nextLine();
 	}
-
+	
+	public boolean havePublication(Project project, String title) {
+		for(Publication p : project.getPublications()) {
+			if(p.getTitle().equals(title)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public boolean haveCollarator(Project project, int id) {
+		for(Collaborator c : project.getCollaborators()) {
+			if(c.getId() == id) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	public int numberOfInPreparation() {
 		int in_preparation = 0;
 		
