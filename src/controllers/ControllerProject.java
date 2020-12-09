@@ -80,7 +80,7 @@ public class ControllerProject {
 			String description = sc.nextLine();
 			project.setDescription(description);
 			System.out.println(project);
-			System.out.println("\nProjeto foi cadastrado com sucesso!");
+			System.out.println("\nProjeto foi atualizado com sucesso!");
 		}else {
 			System.out.println("\nId do projeto não encontrado.");
 		}
