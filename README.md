@@ -24,12 +24,12 @@ Operações que o administrador poderá realizar:
 
 Operação | Nome da operação | Descrição da operação
 ------------- | ------------- | -------------------
-1 | Cadastrar colaborador | Cadastra os dados de um colaborador
-2 | Cadastrar projeto | Cadastra os dados de um projeto
-3 | Cadastrar produção acadêmica | Cadastra os dados de uma produção acadêmica
-4 | Editar as informações básicas de um projeto | Edita as informações cadastradas em um projeto
+1 | Cadastrar colaborador | Adiciona os dados de um colaborador
+2 | Cadastrar projeto | Adiciona os dados de um projeto
+3 | Cadastrar produção acadêmica | Adiciona os dados de uma produção acadêmica
+4 | Editar as informações básicas de um projeto | Ajusta as informações presentes em um projeto
 5 | Alterar status do projeto | Consiste em trocar o status do projeto
-6 | Alocar participantes a um projeto | Adiciona um participarte em um projeto 
+6 | Alocar participantes a um projeto | Adiciona um participante em um projeto 
 7 | Alocar autores a uma produção acadêmica | Adiciona um autor em uma produção acadêmica
 8 | Associar produção acadêmica a um projeto | Adiciona uma produção acadêmica em um projeto
 9 | Remover colaborador de um projeto | Consiste em remover um participante de um projeto
@@ -40,11 +40,11 @@ Operação | Nome da operação | Descrição da operação
 
 ## Diagrama UML
 
-![Academic Productivity Management System](https://user-images.githubusercontent.com/32077255/101271819-06c91c80-3765-11eb-9fd0-2d4d8e12722a.png)
+![Screenshot_2](https://user-images.githubusercontent.com/32077255/101590835-f1086100-39c9-11eb-84cc-1995be01bd19.png)
 
 ## Nota
 
-Aplicação testada no sistema operacional Linux (Ubuntu 18.02). Dessa forma, o seguinte método poderá apresentar inconsistências nos demais sistemas.
+Aplicação executada pelo terminal e testada no sistema operacional Linux (Ubuntu 18.04). Dessa forma, o seguinte método poderá apresentar inconsistências nos demais sistemas.
 ```
 public static void clearScreen() {
 	System.out.println("\033[H\033[2J");
