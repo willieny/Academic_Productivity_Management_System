@@ -44,7 +44,7 @@ Operação | Nome da operação | Descrição da operação
 
 ## Nota
 
-Aplicação executada pelo terminal e testada no sistema operacional Linux (Ubuntu 18.04). Dessa forma, o seguinte método poderá apresentar inconsistências nos demais sistemas.
+Aplicação foi executada pelo terminal e testada no sistema operacional Linux (Ubuntu 18.04). Dessa forma, o seguinte método poderá apresentar inconsistências nos demais sistemas.
 ```
 public static void clearScreen() {
 	System.out.println("\033[H\033[2J");
