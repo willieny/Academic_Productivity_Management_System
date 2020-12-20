@@ -122,7 +122,7 @@ public class ControllerProject {
 				}
 			}		
 			else {
-				System.out.println("\nAltere o status do projeto para \"Em andamento\"");
+				System.out.println("\nNão é possível adicionar colaboradores depois que o status do projeto é alterado para \"Em andamento\".");
 			}
 		}else {
 			System.out.println("\nId do projeto ou do colaborador não foi encontrado.");
@@ -149,16 +149,22 @@ public class ControllerProject {
 				else {
 					if(project.getStatus() == StatusProject.IN_PREPARATION) {
 						if(studentMore2InProgress(project)) {
-							System.out.println("\nO estudante do Id:" + IdStudentMore2InProgress(project) + " possui mais de 2 projetos \"Em andamento\". "
+							System.out.println("\nO estudante do Id:" + IdStudentMore2InProgress(project) + " possui 2 projetos \"Em andamento\". "
 									+ "\nPara alterar o status do projeto atual é necessário que remova o estudante especificado.");
 						}else {
 							project.setStatus(StatusProject.IN_PROCESS);
 							System.out.println("\nNovo status: " + project.getStatus().getStatusProject());
 						}
 					}
-					else if(project.getStatus() == StatusProject.IN_PROCESS && project.getPublications().size() > 0) {
-						project.setStatus(StatusProject.CONCLUDED);
-						System.out.println("\nNovo status: " + project.getStatus().getStatusProject());
+					else if(project.getStatus() == StatusProject.IN_PROCESS) {
+						if(project.getPublications().size() > 0) {
+							project.setStatus(StatusProject.CONCLUDED);
+							System.out.println("\nNovo status: " + project.getStatus().getStatusProject());
+						}else {
+							System.out.println("\nNão é possível alterar status do projeto para \"Concluído\". "
+									+ "\nAssocie pelo menos uma publicação ao projeto.");
+						}
+						
 					}	
 				}
 			}
@@ -195,7 +201,6 @@ public class ControllerProject {
 	}
 	
 	public void consultProject() {
-		print();
 		System.out.print("Id do projeto: ");
 		int id = sc.nextInt();
 		sc.nextLine();

@@ -6,7 +6,7 @@ public abstract class AcademicProduction {
 	
 	private int id;
 	private String title;
-	private ArrayList<Collaborator> authors;
+	private ArrayList<Collaborator> authors = new ArrayList<Collaborator>();;
 
 	public AcademicProduction(int id, String title) {
 		this.id = id;

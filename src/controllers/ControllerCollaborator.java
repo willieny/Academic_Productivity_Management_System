@@ -60,7 +60,6 @@ public class ControllerCollaborator {
 	}
 
 	public void consultCollaborator() {
-		print();
 		System.out.print("Id do colaborador: ");
 		int id = sc.nextInt();
 		sc.nextLine();

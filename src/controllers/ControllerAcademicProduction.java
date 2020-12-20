@@ -60,6 +60,9 @@ public class ControllerAcademicProduction {
 					System.out.println("Id não foi encontrado.");
 				}
 				break;
+			default:
+				System.out.println("Opção inválida.");
+				break;
 		}
 		System.out.println("Pressione ENTER para continuar.");
 		sc.nextLine();
