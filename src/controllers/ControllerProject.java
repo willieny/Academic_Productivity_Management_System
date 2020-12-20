@@ -46,13 +46,14 @@ public class ControllerProject {
 		Project project = new Project(id, title, start, finish, agency, amount, objective, description, StatusProject.IN_PREPARATION);
 		projects.add(project);
 		System.out.println(project);
-		System.out.println("\nProjeto foi cadastrado com sucesso!");
+		System.out.println("\nO projeto foi cadastrado com sucesso!");
 		System.out.println("Pressione ENTER para continuar.");
 		sc.nextLine();
 	}
 	
 	public void editProjectInformation() throws ParseException {
-		System.out.print("Id do projeto: ");
+		print();
+		System.out.print("Informe o id do projeto: ");
 		int id = sc.nextInt();
 		sc.nextLine();
 		Project project = findProject(id);
@@ -82,13 +83,15 @@ public class ControllerProject {
 			System.out.println(project);
 			System.out.println("\nProjeto foi atualizado com sucesso!");
 		}else {
-			System.out.println("\nId do projeto não encontrado.");
+			System.out.println("\nId do projeto não foi encontrado.");
 		}
 		System.out.println("Pressione ENTER para continuar.");
 		sc.nextLine();
 	}
 	
 	public void allocationOfParticipants(ControllerCollaborator controllerCollaborator) {
+		print();
+		controllerCollaborator.print();
 		System.out.print("Id do projeto: ");
 		int id = sc.nextInt();
 		System.out.print("Id do colaborador a ser alocado: ");
@@ -122,7 +125,7 @@ public class ControllerProject {
 				System.out.println("\nAltere o status do projeto para \"Em andamento\"");
 			}
 		}else {
-			System.out.println("\nId do projeto ou do colaborador não encontrado.");
+			System.out.println("\nId do projeto ou do colaborador não foi encontrado.");
 		}
 		System.out.println("Pressione ENTER para continuar.");
 		sc.nextLine();
@@ -159,7 +162,7 @@ public class ControllerProject {
 				}
 			}
 		}else {
-			System.out.println("\nId não encontrado.");
+			System.out.println("\nId não foi encontrado.");
 		}	
 		System.out.println("Pressione ENTER para continuar.");
 		sc.nextLine();
@@ -182,7 +185,7 @@ public class ControllerProject {
 				System.out.println("\nA publicação foi associada ao projeto.");
 			}	
 		}else {
-			System.out.println("\nId ou título não encontrado.");
+			System.out.println("\nId ou título não foi encontrado.");
 		}	
 		System.out.println("Pressione ENTER para continuar.");
 		sc.nextLine();
@@ -231,10 +234,10 @@ public class ControllerProject {
 		sc.nextLine();
 	}
 	
-	public void removerCollaborator(ControllerCollaborator controllerCollaborator) {
+	public void removeCollaborator(ControllerCollaborator controllerCollaborator) {
 		System.out.print("Id do projeto: ");
 		int id = sc.nextInt();
-		System.out.print("Id do colaborador a ser alocado: ");
+		System.out.print("Id do colaborador a ser removido: ");
 		int idc = sc.nextInt();
 		sc.nextLine();
 		if(checkId(id) && controllerCollaborator.checkId(idc)) {
@@ -244,7 +247,7 @@ public class ControllerProject {
 			collaborator.removeProject(project);
 			System.out.println("\nColaborador foi removido.");
 		}else {
-			System.out.println("\nId não encontrado.");
+			System.out.println("\nId não foi encontrado.");
 		}
 		System.out.println("Pressione ENTER para continuar.");
 		sc.nextLine();
@@ -366,8 +369,10 @@ public class ControllerProject {
 	}
 	
 	public void print() {
+		System.out.println("---------Projetos cadastrados-------");
 		for(Project p : projects) {
-			System.out.println(p);
+			System.out.println("Id: " + p.getId() + "\nTítulo: " +p.getTitle());
+			System.out.println("------------------------------------");
 		}
 	}
 	

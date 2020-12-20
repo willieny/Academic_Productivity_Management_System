@@ -172,4 +172,21 @@ public class ControllerAcademicProduction {
 		}
 		return false;
 	}
+	
+	public void printPublications() {
+		System.out.println("-------Publicações Cadastradas------");
+		for(Publication p : publications) {
+			System.out.println("\nTítulo da publicação: " + p.getTitle());
+			System.out.println("------------------------------------");	
+		}
+	}
+	
+	public void printOrientations() {
+		System.out.println("-------Orientações Cadastradas------");
+		for(Publication p : publications) {
+			System.out.println("\nTítulo da orientação: " + p.getTitle());
+			System.out.println("------------------------------------");	
+		}
+	}
+	
 }

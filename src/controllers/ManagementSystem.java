@@ -20,7 +20,6 @@ public class ManagementSystem {
 			Menu.clearScreen();
 			Menu.showMenu();
 			option = sc.nextInt();
-			
 			switch(option) {
 				case 1:
 					controllerCollaborator.register();
@@ -47,7 +46,7 @@ public class ManagementSystem {
 					controllerProject.associatePublication(controllerAcademic);;
 					break;
 				case 9: 
-					controllerProject.removerCollaborator(controllerCollaborator);
+					controllerProject.removeCollaborator(controllerCollaborator);
 					break;
 				case 10: 
 					controllerCollaborator.consultCollaborator();

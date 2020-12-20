@@ -164,8 +164,10 @@ public class ControllerCollaborator {
 	}
 	
 	public void print() {
+		System.out.println("------Colaboradores Cadastrados-----");
 		for(Collaborator c : collaborators) {
-			System.out.println(c);
+			System.out.println("Id: " + c.getId() + "\nNome: " + c.getName());
+			System.out.println("------------------------------------");	
 		}
 	}
 
