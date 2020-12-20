@@ -60,6 +60,7 @@ public class ControllerCollaborator {
 	}
 
 	public void consultCollaborator() {
+		print();
 		System.out.print("Id do colaborador: ");
 		int id = sc.nextInt();
 		sc.nextLine();
@@ -164,10 +165,12 @@ public class ControllerCollaborator {
 	}
 	
 	public void print() {
-		System.out.println("------Colaboradores Cadastrados-----");
-		for(Collaborator c : collaborators) {
-			System.out.println("Id: " + c.getId() + "\nNome: " + c.getName());
-			System.out.println("------------------------------------");	
+		if(collaborators.size() > 0) {
+			System.out.println("------Colaboradores Cadastrados-----");
+			for(Collaborator c : collaborators) {
+				System.out.println("Id: " + c.getId() + "\nNome: " + c.getName());
+				System.out.println("------------------------------------");	
+			}
 		}
 	}
 

@@ -4,8 +4,8 @@ public class Orientation extends AcademicProduction{
 
 	private Teacher teacher;
 
-	public Orientation(String title, Teacher teacher) {
-		super(title);
+	public Orientation(int id, String title, Teacher teacher) {
+		super(id, title);
 		this.teacher = teacher;
 	}
 
@@ -20,10 +20,10 @@ public class Orientation extends AcademicProduction{
 	@Override
 	public String toString() {
 		if(getAuthors().size() > 0) {
-			return "\nTítulo: " + getTitle() + "\nAutores: " + getAuthors();
+			return "\nId: " + getId() + "\nTítulo: " + getTitle() + "\nAutores: " + getAuthors();
 		}
 		else {
-			return "\nTítulo: " + getTitle() + "Sem autores.";
+			return "\nId: " + getId() + "\nTítulo: " + getTitle() + "Sem autores.";
 		}
 	}
 	

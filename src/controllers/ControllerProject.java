@@ -81,9 +81,9 @@ public class ControllerProject {
 			String description = sc.nextLine();
 			project.setDescription(description);
 			System.out.println(project);
-			System.out.println("\nProjeto foi atualizado com sucesso!");
+			System.out.println("\nOs dados do projeto foram alterados.");
 		}else {
-			System.out.println("\nId do projeto não foi encontrado.");
+			System.out.println("\nId não foi encontrado.");
 		}
 		System.out.println("Pressione ENTER para continuar.");
 		sc.nextLine();
@@ -132,6 +132,7 @@ public class ControllerProject {
 	}
 	
 	public void statusChange() {
+		print();
 		System.out.print("Id do projeto: ");
 		int id = sc.nextInt();
 		sc.nextLine();
@@ -148,7 +149,7 @@ public class ControllerProject {
 				else {
 					if(project.getStatus() == StatusProject.IN_PREPARATION) {
 						if(studentMore2InProgress(project)) {
-							System.out.println("\nO estudante do Id:" + IdstudentMore2InProgress(project) + " possui mais de 2 projetos \"Em andamento\". "
+							System.out.println("\nO estudante do Id:" + IdStudentMore2InProgress(project) + " possui mais de 2 projetos \"Em andamento\". "
 									+ "\nPara alterar o status do projeto atual é necessário que remova o estudante especificado.");
 						}else {
 							project.setStatus(StatusProject.IN_PROCESS);
@@ -169,29 +170,32 @@ public class ControllerProject {
 	}
 	
 	public void associatePublication(ControllerAcademicProduction controllerAcademicProduction) {
+		print();
+		controllerAcademicProduction.printPublications();
 		System.out.print("Id do projeto: ");
 		int id = sc.nextInt();
+		System.out.print("Id da publicação: ");
+		int idP = sc.nextInt();
 		sc.nextLine();
-		System.out.print("Título da publicação: ");
-		String title = sc.nextLine();
-		if(checkId(id) && controllerAcademicProduction.checkTitlePublication(title)) {
+		if(checkId(id) && controllerAcademicProduction.checkIdPublication(idP)) {
 			Project project = findProject(id);
-			if(havePublication(project, title)) {
+			if(havePublication(project, idP)) {
 				System.out.println("\nA publicação já está associada ao projeto.");
 			}else {
-				Publication publication = controllerAcademicProduction.findPublication(title);
+				Publication publication = controllerAcademicProduction.findPublication(idP);
 				project.addPublication(publication);
 				publication.setProject(project);
 				System.out.println("\nA publicação foi associada ao projeto.");
 			}	
 		}else {
-			System.out.println("\nId ou título não foi encontrado.");
+			System.out.println("\nId do projeto ou da publicação não foi encontrado.");
 		}	
 		System.out.println("Pressione ENTER para continuar.");
 		sc.nextLine();
 	}
 	
 	public void consultProject() {
+		print();
 		System.out.print("Id do projeto: ");
 		int id = sc.nextInt();
 		sc.nextLine();
@@ -228,13 +232,15 @@ public class ControllerProject {
 				System.out.println("-----------------------------");
 			}
 		}else {
-			System.out.println("\nId não encontrado.");
+			System.out.println("\nId foi não encontrado.");
 		}
 		System.out.println("Pressione ENTER para continuar.");
 		sc.nextLine();
 	}
 	
 	public void removeCollaborator(ControllerCollaborator controllerCollaborator) {
+		print();
+		controllerCollaborator.print();
 		System.out.print("Id do projeto: ");
 		int id = sc.nextInt();
 		System.out.print("Id do colaborador a ser removido: ");
@@ -247,7 +253,7 @@ public class ControllerProject {
 			collaborator.removeProject(project);
 			System.out.println("\nColaborador foi removido.");
 		}else {
-			System.out.println("\nId não foi encontrado.");
+			System.out.println("\nId do projeto ou do colaborador não foi encontrado.");
 		}
 		System.out.println("Pressione ENTER para continuar.");
 		sc.nextLine();
@@ -267,7 +273,7 @@ public class ControllerProject {
 		return false;
 	}
 	
-	public int IdstudentMore2InProgress(Project project) {
+	public int IdStudentMore2InProgress(Project project) {
 		for(Collaborator c : project.getCollaborators()) {
 			if(c instanceof Student) {
 				Student student = (Student)c;
@@ -292,9 +298,9 @@ public class ControllerProject {
 		return i;
 	}
 	
-	public boolean havePublication(Project project, String title) {
+	public boolean havePublication(Project project, int id) {
 		for(Publication p : project.getPublications()) {
-			if(p.getTitle().equals(title)) {
+			if(p.getId() == id) {
 				return true;
 			}
 		}
@@ -369,10 +375,12 @@ public class ControllerProject {
 	}
 	
 	public void print() {
-		System.out.println("---------Projetos cadastrados-------");
-		for(Project p : projects) {
-			System.out.println("Id: " + p.getId() + "\nTítulo: " +p.getTitle());
-			System.out.println("------------------------------------");
+		if(projects.size() > 0) {
+			System.out.println("---------Projetos cadastrados-------");
+			for(Project p : projects) {
+				System.out.println("Id: " + p.getId() + "\nTítulo: " +p.getTitle());
+				System.out.println("------------------------------------");
+			}
 		}
 	}
 	

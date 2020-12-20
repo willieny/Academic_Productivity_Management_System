@@ -40,7 +40,7 @@ public class ManagementSystem {
 					controllerProject.allocationOfParticipants(controllerCollaborator);
 					break;
 				case 7:
-					controllerAcademic.allocationOfParticipants(controllerCollaborator);
+					controllerAcademic.allocationOfAuthors(controllerCollaborator);
 					break;
 				case 8:
 					controllerProject.associatePublication(controllerAcademic);;

@@ -4,12 +4,21 @@ import java.util.ArrayList;
 
 public abstract class AcademicProduction {
 	
+	private int id;
 	private String title;
 	private ArrayList<Collaborator> authors;
-	
-	public AcademicProduction(String title) {
+
+	public AcademicProduction(int id, String title) {
+		this.id = id;
 		this.title = title;
-		this.authors = new ArrayList<Collaborator>();
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getTitle() {
