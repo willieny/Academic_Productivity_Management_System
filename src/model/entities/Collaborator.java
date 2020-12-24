@@ -2,7 +2,7 @@ package model.entities;
 
 import java.util.ArrayList;
 
-public abstract class Collaborator {
+public class Collaborator {
 
 	private int id;
 	private String name;
@@ -65,8 +65,5 @@ public abstract class Collaborator {
 	public void removePublication(Publication publication) {
 		publications.remove(publication);
 	}
-	
-	@Override
-	public abstract String toString();
 	
 }

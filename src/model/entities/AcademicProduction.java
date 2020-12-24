@@ -2,7 +2,7 @@ package model.entities;
 
 import java.util.ArrayList;
 
-public abstract class AcademicProduction {
+public class AcademicProduction {
 	
 	private int id;
 	private String title;
@@ -40,7 +40,5 @@ public abstract class AcademicProduction {
 	public void removeAuthor(Collaborator author) {
 		authors.remove(author);
 	}
-	
-	@Override
-	public abstract String toString();
+
 }
