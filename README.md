@@ -40,7 +40,7 @@ Operação | Nome da operação | Descrição da operação
 
 ## Diagrama UML
 
-![Screenshot_2](https://user-images.githubusercontent.com/32077255/101590835-f1086100-39c9-11eb-84cc-1995be01bd19.png)
+![Academic Productivity Management System vpd](https://user-images.githubusercontent.com/32077255/104078217-b4fc3200-51fb-11eb-8932-cf35df369e51.png)
 
 ## Nota
 
